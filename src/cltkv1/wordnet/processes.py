@@ -33,15 +33,13 @@ class WordNetProcess(Process):
             return WordNetCorpusReader(language)
 
     def run(self):
-        """
-                Then we would loop through Doc.words. Within that list are
-                many Word objects. You
-                would look at word.lemma (say) and then in .run() (below) you would create a new key-value pair
-                within Word. So
-                if Word.lemma = "adversarius" you could add something like Word.synset = [inimicus, perduellis].
-
-                after resolving the lemma, return its Synsets -- via which it is possible access synonyms, etc
-                alternatively, and perhaps more intuitive for most use-cases, immediately return the resolved Lemmas
-                via this Lemma's Synsets
-        """
-        pass
+        """Adds a list of Synset objects, representing a Word's senses, to all lemmatized words"""
+        
+        tmp_doc = self.input_doc
+        wn = self.algorithm
+        for word in tmp_doc.words:
+            # TODO: map CLTK lemmas to WN lemmas
+            if word.lemma:
+                synsets =  list(wn.lemma(word.lemma, return_ambiguous=False).synsets())
+                word.synsets = synsets
+        self.output_doc = tmp_doc

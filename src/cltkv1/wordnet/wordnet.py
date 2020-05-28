@@ -11,15 +11,15 @@ synonymy, antonymy etc. It is also possible to compute semantic similarities usi
 >>> latin_wn = WordNetCorpusReader(iso_code="lat")
 >>> uirtus = LWN.lemma('uirtus')
 >>> list(uirtus.synsets())
-[Synset(pos='n', offset='05595229', definition='feeling no fear'), Synset(pos='n', offset='04504076', definition='a characteristic property that defines the apparent individual nature of something'), Synset(pos='n', offset='04349777', definition='possession of the qualities (especially mental qualities) required to do something or get something done; "danger heightened his powers of discrimination"'), Synset(pos='n', offset='04549901', definition='an ideal of personal excellence toward which a person strives'), Synset(pos='n', offset='03800378', definition='moral excellence or admirableness'), Synset(pos='n', offset='03800842', definition='morality with respect to sexual relations'), Synset(pos='n', offset='03805961', definition='a quality of spirit that enables you to face danger of pain without showing fear'), Synset(pos='n', offset='03929156', definition='strength of mind that enables one to endure adversity with courage'), Synset(pos='n', offset='03678310', definition='the trait of being manly; having the characteristics of an adult male'), Synset(pos='n', offset='03806773', definition='resolute courageousness'), Synset(pos='n', offset='04505328', definition='something in which something or some one excels'), Synset(pos='n', offset='03806965', definition='the trait of having a courageous spirit'), Synset(pos='n', offset='03655289', definition='courageous high-spiritedness'), Synset(pos='n', offset='03808136', definition='the trait of showing courage and determination in spite of possible loss or injury'), Synset(pos='n', offset='04003047', definition='the quality that renders something desirable or valuable or useful'), Synset(pos='n', offset='03717355', definition='a degree or grade of excellence or worth'), Synset(pos='n', offset='04003707', definition='any admirable quality or attribute'), Synset(pos='n', offset='03798920', definition='the quality of doing what is right and avoiding what is wrong'), Synset(pos='n', offset='03799068', definition='a particular moral excellence')]
+[Synset(pos='n', offset='05595229', gloss='feeling no fear'), Synset(pos='n', offset='04504076', gloss='a characteristic property that defines the apparent individual nature of something'), Synset(pos='n', offset='04349777', gloss='possession of the qualities (especially mental qualities) required to do something or get something done; "danger heightened his powers of discrimination"'), Synset(pos='n', offset='04549901', gloss='an ideal of personal excellence toward which a person strives'), Synset(pos='n', offset='03800378', gloss='moral excellence or admirableness'), Synset(pos='n', offset='03800842', gloss='morality with respect to sexual relations'), Synset(pos='n', offset='03805961', gloss='a quality of spirit that enables you to face danger of pain without showing fear'), Synset(pos='n', offset='03929156', gloss='strength of mind that enables one to endure adversity with courage'), Synset(pos='n', offset='03678310', gloss='the trait of being manly; having the characteristics of an adult male'), Synset(pos='n', offset='03806773', gloss='resolute courageousness'), Synset(pos='n', offset='04505328', gloss='something in which something or some one excels'), Synset(pos='n', offset='03806965', gloss='the trait of having a courageous spirit'), Synset(pos='n', offset='03655289', gloss='courageous high-spiritedness'), Synset(pos='n', offset='03808136', gloss='the trait of showing courage and determination in spite of possible loss or injury'), Synset(pos='n', offset='04003047', gloss='the quality that renders something desirable or valuable or useful'), Synset(pos='n', offset='03717355', gloss='a degree or grade of excellence or worth'), Synset(pos='n', offset='04003707', gloss='any admirable quality or attribute'), Synset(pos='n', offset='03798920', gloss='the quality of doing what is right and avoiding what is wrong'), Synset(pos='n', offset='03799068', gloss='a particular moral excellence')]
 >>> latin_wn.synset('n#03457380')
-Synset(pos='n', offset='03457380', definition='a cutting or thrusting weapon with a long blade')
+Synset(pos='n', offset='03457380', gloss='a cutting or thrusting weapon with a long blade')
 
 >>> from cltkv1.wordnet.wordnet import Synset
->>> s1 = Synset(LWN, pos='n', offset='02542418', definition='a short stabbing weapon with a pointed blade')
->>> s2 = Synset(LWN, pos='n', offset='03457380', definition='a cutting or thrusting weapon with a long blade')
+>>> s1 = Synset(LWN, pos='n', offset='02542418', gloss='a short stabbing weapon with a pointed blade')
+>>> s2 = Synset(LWN, pos='n', offset='03457380', gloss='a cutting or thrusting weapon with a long blade')
 >>> s1.lowest_common_hypernyms(s2)
-[Synset(pos='n', offset='03601056', definition='weaponry used in fighting or hunting')]
+[Synset(pos='n', offset='03601056', gloss='weaponry used in fighting or hunting')]
 >>> s1.shortest_path_distance(s2)
 3
 >>> s1.wup_similarity(s2)
@@ -103,9 +103,9 @@ class _WordNetObject(object):
     def hypernyms(self):
         """
         >>> LWN = WordNetCorpusReader(iso_code="lat")
-        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', definition='a short stabbing weapon with a pointed blade')
+        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', gloss='a short stabbing weapon with a pointed blade')
         >>> s1.hypernyms()
-        [Synset(pos='n', offset='02893681', definition='a weapon with a handle and blade with a sharp point')]
+        [Synset(pos='n', offset='02893681', gloss='a weapon with a handle and blade with a sharp point')]
         """
         return self.related("@")
 
@@ -115,9 +115,9 @@ class _WordNetObject(object):
     def hyponyms(self):
         """
         >>> LWN = WordNetCorpusReader(iso_code="lat")
-        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', definition='a short stabbing weapon with a pointed blade')
+        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', gloss='a short stabbing weapon with a pointed blade')
         >>> s1.hyponyms()
-        [Synset(pos='n', offset='02575932', definition='(Scottish) a long straight-bladed dagger'), Synset(pos='n', offset='03155758', definition='a dagger with a slender blade'), Synset(pos='n', offset='03413564', definition='a small dagger with a tapered blade')]
+        [Synset(pos='n', offset='02575932', gloss='(Scottish) a long straight-bladed dagger'), Synset(pos='n', offset='03155758', gloss='a dagger with a slender blade'), Synset(pos='n', offset='03413564', gloss='a small dagger with a tapered blade')]
         """
         return self.related("~")
 
@@ -135,7 +135,7 @@ class _WordNetObject(object):
         >>> LWN = WordNetCorpusReader(iso_code="lat")
         >>> s1 = LWN.synset_from_pos_and_offset('n', '00510771')
         >>> s1.member_meronyms()
-        [Synset(pos='n', offset='07260585', definition='a supporter of feminism')]
+        [Synset(pos='n', offset='07260585', gloss='a supporter of feminism')]
         """
         return self.related("%m")
 
@@ -144,7 +144,7 @@ class _WordNetObject(object):
         >>> LWN = WordNetCorpusReader(iso_code="lat")
         >>> s1 = LWN.synset_from_pos_and_offset('n', '02335723')
         >>> s1.substance_meronyms()
-        [Synset(pos='n', offset='10626993', definition='soil that is plastic when moist but hard when fired')]
+        [Synset(pos='n', offset='10626993', gloss='soil that is plastic when moist but hard when fired')]
         """
         return self.related("%s")
 
@@ -153,7 +153,7 @@ class _WordNetObject(object):
         >>> LWN = WordNetCorpusReader(iso_code="lat")
         >>> s1 = LWN.synset_from_pos_and_offset('n', '00077986')
         >>> s1.part_meronyms()
-        [Synset(pos='n', offset='00078772', definition='preparation for the delivery of shellfire on a target')]
+        [Synset(pos='n', offset='00078772', gloss='preparation for the delivery of shellfire on a target')]
         """
         return self.related("%p")
 
@@ -162,7 +162,7 @@ class _WordNetObject(object):
         >>> LWN = WordNetCorpusReader(iso_code="lat")
         >>> s1 = LWN.synset_from_pos_and_offset('n', '00541686')
         >>> s1.attributes()
-        [Synset(pos='a', offset='01151057', definition='sexually attracted to members of the opposite sex'), Synset(pos='a', offset='01151299', definition='sexually attracted to members of your own sex')]
+        [Synset(pos='a', offset='01151057', gloss='sexually attracted to members of the opposite sex'), Synset(pos='a', offset='01151299', gloss='sexually attracted to members of your own sex')]
         """
         return self.related("=")
 
@@ -171,7 +171,7 @@ class _WordNetObject(object):
         >>> LWN = WordNetCorpusReader(iso_code="lat")
         >>> s1 = LWN.synset_from_pos_and_offset('v', '00001740')
         >>> s1.entailments()
-        [Synset(pos='v', offset='00003142', definition='expel air'), Synset(pos='v', offset='00003763', definition='draw in air')]
+        [Synset(pos='v', offset='00003142', gloss='expel air'), Synset(pos='v', offset='00003763', gloss='draw in air')]
         """
         return self.related("*")
 
@@ -180,7 +180,7 @@ class _WordNetObject(object):
         >>> LWN = WordNetCorpusReader(iso_code="lat")
         >>> s1 = LWN.synset_from_pos_and_offset('v', '00014590')
         >>> s1.causes()
-        [Synset(pos='v', offset='00009805', definition='be asleep')]
+        [Synset(pos='v', offset='00009805', gloss='be asleep')]
         """
         return self.related(">")
 
@@ -189,7 +189,7 @@ class _WordNetObject(object):
         >>> LWN = WordNetCorpusReader(iso_code="lat")
         >>> s1 = LWN.synset_from_pos_and_offset('v', '00107243')
         >>> s1.also_sees()
-        [Synset(pos='v', offset='00293275', definition='become looser or slack')]
+        [Synset(pos='v', offset='00293275', gloss='become looser or slack')]
         """
         return self.related("^")
 
@@ -198,7 +198,7 @@ class _WordNetObject(object):
         >>> LWN = WordNetCorpusReader(iso_code="lat")
         >>> s1 = LWN.synset_from_pos_and_offset('v', '00051515')
         >>> s1.verb_groups()
-        [Synset(pos='v', offset='00050470', definition='eliminate urine')]
+        [Synset(pos='v', offset='00050470', gloss='eliminate urine')]
         """
         return self.related("$")
 
@@ -210,7 +210,7 @@ class _WordNetObject(object):
         >>> LWN = WordNetCorpusReader(iso_code="lat")
         >>> s1 = LWN.synset_from_pos_and_offset('n', 'L9083855')
         >>> s1.nearest()
-        [Synset(pos='n', offset='03543592', definition='ship for transporting troops')]
+        [Synset(pos='n', offset='03543592', gloss='ship for transporting troops')]
         """
         return self.related("|")
 
@@ -378,7 +378,7 @@ class Lemma(_WordNetObject):
         >>> LWN = WordNetCorpusReader(iso_code="lat")
         >>> virtus = LWN.lemmas_from_uri('u0800')[0]
         >>> synset = list(virtus.synsets())[0]
-        >>> print(synset.definition())
+        >>> print(synset.gloss())
         feeling no fear
         """
         return chain(self.literal(), self.metonymic(), self.metaphoric())
@@ -388,7 +388,7 @@ class Lemma(_WordNetObject):
         >>> LWN = WordNetCorpusReader(iso_code="lat")
         >>> virtus = LWN.lemmas_from_uri('u0800')[0]
         >>> list(virtus.literal())
-        [Synset(pos='n', offset='05595229', definition='feeling no fear'), Synset(pos='n', offset='04504076', definition='a characteristic property that defines the apparent individual nature of something'), Synset(pos='n', offset='04349777', definition='possession of the qualities (especially mental qualities) required to do something or get something done; "danger heightened his powers of discrimination"'), Synset(pos='n', offset='04549901', definition='an ideal of personal excellence toward which a person strives'), Synset(pos='n', offset='03800378', definition='moral excellence or admirableness'), Synset(pos='n', offset='03800842', definition='morality with respect to sexual relations'), Synset(pos='n', offset='03805961', definition='a quality of spirit that enables you to face danger of pain without showing fear'), Synset(pos='n', offset='03929156', definition='strength of mind that enables one to endure adversity with courage'), Synset(pos='n', offset='03678310', definition='the trait of being manly; having the characteristics of an adult male'), Synset(pos='n', offset='03806773', definition='resolute courageousness'), Synset(pos='n', offset='04505328', definition='something in which something or some one excels'), Synset(pos='n', offset='03806965', definition='the trait of having a courageous spirit'), Synset(pos='n', offset='03655289', definition='courageous high-spiritedness'), Synset(pos='n', offset='03808136', definition='the trait of showing courage and determination in spite of possible loss or injury'), Synset(pos='n', offset='04003047', definition='the quality that renders something desirable or valuable or useful'), Synset(pos='n', offset='03717355', definition='a degree or grade of excellence or worth'), Synset(pos='n', offset='04003707', definition='any admirable quality or attribute'), Synset(pos='n', offset='03798920', definition='the quality of doing what is right and avoiding what is wrong'), Synset(pos='n', offset='03799068', definition='a particular moral excellence')]
+        [Synset(pos='n', offset='05595229', gloss='feeling no fear'), Synset(pos='n', offset='04504076', gloss='a characteristic property that defines the apparent individual nature of something'), Synset(pos='n', offset='04349777', gloss='possession of the qualities (especially mental qualities) required to do something or get something done; "danger heightened his powers of discrimination"'), Synset(pos='n', offset='04549901', gloss='an ideal of personal excellence toward which a person strives'), Synset(pos='n', offset='03800378', gloss='moral excellence or admirableness'), Synset(pos='n', offset='03800842', gloss='morality with respect to sexual relations'), Synset(pos='n', offset='03805961', gloss='a quality of spirit that enables you to face danger of pain without showing fear'), Synset(pos='n', offset='03929156', gloss='strength of mind that enables one to endure adversity with courage'), Synset(pos='n', offset='03678310', gloss='the trait of being manly; having the characteristics of an adult male'), Synset(pos='n', offset='03806773', gloss='resolute courageousness'), Synset(pos='n', offset='04505328', gloss='something in which something or some one excels'), Synset(pos='n', offset='03806965', gloss='the trait of having a courageous spirit'), Synset(pos='n', offset='03655289', gloss='courageous high-spiritedness'), Synset(pos='n', offset='03808136', gloss='the trait of showing courage and determination in spite of possible loss or injury'), Synset(pos='n', offset='04003047', gloss='the quality that renders something desirable or valuable or useful'), Synset(pos='n', offset='03717355', gloss='a degree or grade of excellence or worth'), Synset(pos='n', offset='04003707', gloss='any admirable quality or attribute'), Synset(pos='n', offset='03798920', gloss='the quality of doing what is right and avoiding what is wrong'), Synset(pos='n', offset='03799068', gloss='a particular moral excellence')]
         """
         return (
             Synset(
@@ -396,7 +396,7 @@ class Lemma(_WordNetObject):
                 synset["language"],
                 synset["pos"],
                 synset["offset"],
-                synset["definition"],
+                synset["gloss"],
             )
             for synset in self._synsets["literal"]
         )
@@ -406,7 +406,7 @@ class Lemma(_WordNetObject):
         >>> LWN = WordNetCorpusReader(iso_code="lat")
         >>> baculum = LWN.lemma('baculum', 'n', 'n-s---nn2-')
         >>> list(baculum.metonymic())
-        [Synset(pos='n', offset='02327416', definition='a support that steadies or strengthens something else'), Synset(pos='n', offset='02531456', definition='used as a weapon'), Synset(pos='n', offset='03444976', definition='any device that bears the weight of another thing')]
+        [Synset(pos='n', offset='02327416', gloss='a support that steadies or strengthens something else'), Synset(pos='n', offset='02531456', gloss='used as a weapon'), Synset(pos='n', offset='03444976', gloss='any device that bears the weight of another thing')]
         """
         return (
             Synset(
@@ -414,7 +414,7 @@ class Lemma(_WordNetObject):
                 synset["language"],
                 synset["pos"],
                 synset["offset"],
-                synset["definition"],
+                synset["gloss"],
             )
             for synset in self._synsets["metonymic"]
         )
@@ -424,7 +424,7 @@ class Lemma(_WordNetObject):
         >>> LWN = WordNetCorpusReader(iso_code="lat")
         >>> baculum = LWN.lemma('baculum', 'n', 'n-s---nn2-')
         >>> list(baculum.metaphoric())
-        [Synset(pos='n', offset='04399253', definition='something providing immaterial support or assistance to a person or cause or interest')]
+        [Synset(pos='n', offset='04399253', gloss='something providing immaterial support or assistance to a person or cause or interest')]
         """
         return (
             Synset(
@@ -432,7 +432,7 @@ class Lemma(_WordNetObject):
                 synset["language"],
                 synset["pos"],
                 synset["offset"],
-                synset["definition"],
+                synset["gloss"],
             )
             for synset in self._synsets["metaphoric"]
         )
@@ -608,7 +608,7 @@ class Semfield:
                         synset["language"],
                         synset["pos"],
                         synset["offset"],
-                        synset["definition"],
+                        synset["gloss"],
                     )
                     for synset in data[0]["synsets"]
                 )
@@ -710,19 +710,19 @@ class Semfield:
 @python_2_unicode_compatible
 class Synset(_WordNetObject):
     """
-    Create a Synset from pos, offset and definition parameters where:
+    Create a Synset from pos, offset and gloss parameters where:
     <pos> is the synset's part of speech
     <offset> is the offset ID of the synset
-    <definition> is the synset's definition
+    <gloss> is the synset's gloss
     >>> LWN = WordNetCorpusReader(iso_code="lat")
-    >>> s1 = Synset(LWN, None, pos='n', offset='02542418', definition='a short stabbing weapon with a pointed blade')
+    >>> s1 = Synset(LWN, None, pos='n', offset='02542418', gloss='a short stabbing weapon with a pointed blade')
     >>> print(s1.id())
     n#02542418
     Synset attributes, accessible via methods with the same name:
     - pos: The synset's part of speech, 'n', 'v', 'a', or 'r'
     - offset: The unique offset ID of the synset
     - lemmas: A list of the Lemma objects for this synset
-    - definition: The definition for this synset
+    - gloss: The gloss for this synset
     Synset methods:
     Synsets have the following methods for retrieving related Synsets.
     They correspond to the names for the pointer symbols defined here:
@@ -757,7 +757,7 @@ class Synset(_WordNetObject):
         "_pos",
         "_offset",
         "_lemmas",
-        "_definition",
+        "_gloss",
         "_semfields",
         "_sentiment",
         "__related",
@@ -767,14 +767,14 @@ class Synset(_WordNetObject):
     ]
 
     def __init__(
-        self, wordnet_corpus_reader, language, pos, offset, definition, semfield=None
+        self, wordnet_corpus_reader, language, pos, offset, gloss, semfield=None
     ):
         self._wordnet_corpus_reader = wordnet_corpus_reader
 
         self._language = language
         self._pos = pos
         self._offset = offset
-        self._definition = definition.split(":")[0]
+        self._gloss = gloss.split(":")[0]
         self._examples = None
         self._lemmas = None
         self.__related = None
@@ -871,8 +871,8 @@ class Synset(_WordNetObject):
     def offset(self):
         return self._offset
 
-    def definition(self):
-        return self._definition
+    def gloss(self):
+        return self._gloss
 
     def examples(self):
         """
@@ -900,7 +900,7 @@ class Synset(_WordNetObject):
         Return all the Lemma objects associated with the synset.
         :return: A generator of Lemma objects.
         >>> LWN = WordNetCorpusReader(iso_code="lat")
-        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', definition='a short stabbing weapon with a pointed blade')
+        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', gloss='a short stabbing weapon with a pointed blade')
         >>> for lemma in sorted(set(s1.lemmas())):
         ...     print(lemma.lemma())
         clunaculum
@@ -938,9 +938,9 @@ class Synset(_WordNetObject):
         """
         Get the topmost hypernyms of this synset in WordNet.
         >>> LWN = WordNetCorpusReader(iso_code="lat")
-        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', definition='a short stabbing weapon with a pointed blade')
+        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', gloss='a short stabbing weapon with a pointed blade')
         >>> s1.root_hypernyms()
-        [Synset(pos='n', offset='00001740', definition='anything having existence (living or nonliving)')]
+        [Synset(pos='n', offset='00001740', gloss='anything having existence (living or nonliving)')]
         """
 
         result = []
@@ -962,7 +962,7 @@ class Synset(_WordNetObject):
         Get the length of the longest hypernym path from this synset to the root.
         :return: An integer value representing the maximum path length to the root.
         >>> LWN = WordNetCorpusReader(iso_code="lat")
-        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', definition='a short stabbing weapon with a pointed blade')
+        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', gloss='a short stabbing weapon with a pointed blade')
         >>> s1.max_depth()
         7
         """
@@ -980,7 +980,7 @@ class Synset(_WordNetObject):
         :return: The length of the shortest hypernym path from this
         synset to the root.
         >>> LWN = WordNetCorpusReader(iso_code="lat")
-        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', definition='a short stabbing weapon with a pointed blade')
+        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', gloss='a short stabbing weapon with a pointed blade')
         >>> s1.min_depth()
         7
         """
@@ -998,10 +998,10 @@ class Synset(_WordNetObject):
         Return the transitive closure of the synset under the rel
         relationship, breadth-first.
         >>> LWN = WordNetCorpusReader(iso_code="lat")
-        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', definition='a short stabbing weapon with a pointed blade')
+        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', gloss='a short stabbing weapon with a pointed blade')
         >>> hypers = lambda s: s.hypernyms()
         >>> list(s1.closure(hypers))
-        [Synset(pos='n', offset='02893681', definition='a weapon with a handle and blade with a sharp point'), Synset(pos='n', offset='03601056', definition='weaponry used in fighting or hunting'), Synset(pos='n', offset='03601456', definition='weapons considered collectively'), Synset(pos='n', offset='02859872', definition='an artifact (or system of artifacts) that is instrumental in accomplishing some end'), Synset(pos='n', offset='00011937', definition='a man-made object'), Synset(pos='n', offset='00009457', definition='a physical (tangible and visible) entity'), Synset(pos='n', offset='00001740', definition='anything having existence (living or nonliving)')]
+        [Synset(pos='n', offset='02893681', gloss='a weapon with a handle and blade with a sharp point'), Synset(pos='n', offset='03601056', gloss='weaponry used in fighting or hunting'), Synset(pos='n', offset='03601456', gloss='weapons considered collectively'), Synset(pos='n', offset='02859872', gloss='an artifact (or system of artifacts) that is instrumental in accomplishing some end'), Synset(pos='n', offset='00011937', gloss='a man-made object'), Synset(pos='n', offset='00009457', gloss='a physical (tangible and visible) entity'), Synset(pos='n', offset='00001740', gloss='anything having existence (living or nonliving)')]
         """
         from nltk.util import breadth_first
 
@@ -1019,9 +1019,9 @@ class Synset(_WordNetObject):
         :return: A list of lists, where each list gives the node sequence
            connecting the initial ``Synset`` node and a root node.
         >>> LWN = WordNetCorpusReader(iso_code="lat")
-        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', definition='a short stabbing weapon with a pointed blade')
+        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', gloss='a short stabbing weapon with a pointed blade')
         >>> s1.hypernym_paths()
-        [[Synset(pos='n', offset='00001740', definition='anything having existence (living or nonliving)'), Synset(pos='n', offset='00009457', definition='a physical (tangible and visible) entity'), Synset(pos='n', offset='00011937', definition='a man-made object'), Synset(pos='n', offset='02859872', definition='an artifact (or system of artifacts) that is instrumental in accomplishing some end'), Synset(pos='n', offset='03601456', definition='weapons considered collectively'), Synset(pos='n', offset='03601056', definition='weaponry used in fighting or hunting'), Synset(pos='n', offset='02893681', definition='a weapon with a handle and blade with a sharp point'), Synset(pos='n', offset='02542418', definition='a short stabbing weapon with a pointed blade')]]
+        [[Synset(pos='n', offset='00001740', gloss='anything having existence (living or nonliving)'), Synset(pos='n', offset='00009457', gloss='a physical (tangible and visible) entity'), Synset(pos='n', offset='00011937', gloss='a man-made object'), Synset(pos='n', offset='02859872', gloss='an artifact (or system of artifacts) that is instrumental in accomplishing some end'), Synset(pos='n', offset='03601456', gloss='weapons considered collectively'), Synset(pos='n', offset='03601056', gloss='weaponry used in fighting or hunting'), Synset(pos='n', offset='02893681', gloss='a weapon with a handle and blade with a sharp point'), Synset(pos='n', offset='02542418', gloss='a short stabbing weapon with a pointed blade')]]
         """
         paths = []
 
@@ -1043,10 +1043,10 @@ class Synset(_WordNetObject):
         :param other: other input synset.
         :return: The synsets that are hypernyms of both synsets.
         >>> LWN = WordNetCorpusReader(iso_code="lat")
-        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', definition='a short stabbing weapon with a pointed blade')
-        >>> s2 = Synset(LWN, None, pos='n', offset='03457380', definition='a cutting or thrusting weapon with a long blade')
+        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', gloss='a short stabbing weapon with a pointed blade')
+        >>> s2 = Synset(LWN, None, pos='n', offset='03457380', gloss='a cutting or thrusting weapon with a long blade')
         >>> sorted(s1.common_hypernyms(s2))
-        [Synset(pos='n', offset='00001740', definition='anything having existence (living or nonliving)'), Synset(pos='n', offset='00009457', definition='a physical (tangible and visible) entity'), Synset(pos='n', offset='00011937', definition='a man-made object'), Synset(pos='n', offset='02859872', definition='an artifact (or system of artifacts) that is instrumental in accomplishing some end'), Synset(pos='n', offset='03601056', definition='weaponry used in fighting or hunting'), Synset(pos='n', offset='03601456', definition='weapons considered collectively')]
+        [Synset(pos='n', offset='00001740', gloss='anything having existence (living or nonliving)'), Synset(pos='n', offset='00009457', gloss='a physical (tangible and visible) entity'), Synset(pos='n', offset='00011937', gloss='a man-made object'), Synset(pos='n', offset='02859872', gloss='an artifact (or system of artifacts) that is instrumental in accomplishing some end'), Synset(pos='n', offset='03601056', gloss='weaponry used in fighting or hunting'), Synset(pos='n', offset='03601456', gloss='weapons considered collectively')]
         """
         if not self._all_hypernyms:
             self._all_hypernyms = set(
@@ -1091,10 +1091,10 @@ class Synset(_WordNetObject):
         :return: The synsets that are the lowest common hypernyms of both
             synsets
         >>> LWN = WordNetCorpusReader(iso_code="lat")
-        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', definition='a short stabbing weapon with a pointed blade')
-        >>> s2 = Synset(LWN, None, pos='n', offset='03457380', definition='a cutting or thrusting weapon with a long blade')
+        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', gloss='a short stabbing weapon with a pointed blade')
+        >>> s2 = Synset(LWN, None, pos='n', offset='03457380', gloss='a cutting or thrusting weapon with a long blade')
         >>> s1.lowest_common_hypernyms(s2)
-        [Synset(pos='n', offset='03601056', definition='weaponry used in fighting or hunting')]
+        [Synset(pos='n', offset='03601056', gloss='weaponry used in fighting or hunting')]
         """
         synsets = self.common_hypernyms(other)
         if simulate_root:
@@ -1123,9 +1123,9 @@ class Synset(_WordNetObject):
         :return: A set of ``(Synset, int)`` tuples where each ``Synset`` is
            a hypernym of the first ``Synset``.
         >>> LWN = WordNetCorpusReader(iso_code="lat")
-        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', definition='a short stabbing weapon with a pointed blade')
+        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', gloss='a short stabbing weapon with a pointed blade')
         >>> sorted(s1.hypernym_distances())
-        [(Synset(pos='n', offset='00001740', definition='anything having existence (living or nonliving)'), 7), (Synset(pos='n', offset='00009457', definition='a physical (tangible and visible) entity'), 6), (Synset(pos='n', offset='00011937', definition='a man-made object'), 5), (Synset(pos='n', offset='02542418', definition='a short stabbing weapon with a pointed blade'), 0), (Synset(pos='n', offset='02859872', definition='an artifact (or system of artifacts) that is instrumental in accomplishing some end'), 4), (Synset(pos='n', offset='02893681', definition='a weapon with a handle and blade with a sharp point'), 1), (Synset(pos='n', offset='03601056', definition='weaponry used in fighting or hunting'), 2), (Synset(pos='n', offset='03601456', definition='weapons considered collectively'), 3)]
+        [(Synset(pos='n', offset='00001740', gloss='anything having existence (living or nonliving)'), 7), (Synset(pos='n', offset='00009457', gloss='a physical (tangible and visible) entity'), 6), (Synset(pos='n', offset='00011937', gloss='a man-made object'), 5), (Synset(pos='n', offset='02542418', gloss='a short stabbing weapon with a pointed blade'), 0), (Synset(pos='n', offset='02859872', gloss='an artifact (or system of artifacts) that is instrumental in accomplishing some end'), 4), (Synset(pos='n', offset='02893681', gloss='a weapon with a handle and blade with a sharp point'), 1), (Synset(pos='n', offset='03601056', gloss='weaponry used in fighting or hunting'), 2), (Synset(pos='n', offset='03601456', gloss='weapons considered collectively'), 3)]
         """
         distances = set([(self, distance)])
         for hypernym in self._hypernyms():
@@ -1173,8 +1173,8 @@ class Synset(_WordNetObject):
         :return: The number of edges in the shortest path connecting the two
             nodes, or None if no path exists.
         >>> LWN = WordNetCorpusReader(iso_code="lat")
-        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', definition='a short stabbing weapon with a pointed blade')
-        >>> s2 = Synset(LWN, None, pos='n', offset='03457380', definition='a cutting or thrusting weapon with a long blade')
+        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', gloss='a short stabbing weapon with a pointed blade')
+        >>> s2 = Synset(LWN, None, pos='n', offset='03457380', gloss='a cutting or thrusting weapon with a long blade')
         >>> s1.shortest_path_distance(s2)
         3
         """
@@ -1207,7 +1207,7 @@ class Synset(_WordNetObject):
         >>> s1 = LWN.synset_from_pos_and_offset(pos='n', offset='01595188')
         >>> hypers = lambda s: s.hypernyms()
         >>> s1.tree(hypers)
-        [Synset(pos='n', offset='01595188', definition='a member of the genus Canis (probably descended from the common wolf) that has been domesticated by man since prehistoric times; occurs in many breeds; "the dog barked all night"'), [Synset(pos='n', offset='01594481', definition='any of various fissiped mammals with nonretractile claws and typically long muzzles'), [Synset(pos='n', offset='01586585', definition='terrestrial or aquatic flesh-eating mammal; terrestrial carnivores have four or five clawed digits on each limb'), [Synset(pos='n', offset='01402712', definition='mammals having a placenta; all mammals except monotremes and marsupials'), [Synset(pos='n', offset='01378363', definition='any warm-blooded vertebrate having the skin more or less covered with hair; young are born alive except for the small subclass of monotremes and nourished with milk'), [Synset(pos='n', offset='00995974', definition='animals having a bony or cartilaginous skeleton with a segmented spinal column and a large brain enclosed in a skull or cranium'), [Synset(pos='n', offset='00990770', definition='any animal of the phylum Chordata having a notochord or spinal column'), [Synset(pos='n', offset='00008019', definition='a living organism characterized by voluntary movement'), [Synset(pos='n', offset='00002086', definition='any living entity'), [Synset(pos='n', offset='00001740', definition='anything having existence (living or nonliving)')]]]]]]]]]]
+        [Synset(pos='n', offset='01595188', gloss='a member of the genus Canis (probably descended from the common wolf) that has been domesticated by man since prehistoric times; occurs in many breeds; "the dog barked all night"'), [Synset(pos='n', offset='01594481', gloss='any of various fissiped mammals with nonretractile claws and typically long muzzles'), [Synset(pos='n', offset='01586585', gloss='terrestrial or aquatic flesh-eating mammal; terrestrial carnivores have four or five clawed digits on each limb'), [Synset(pos='n', offset='01402712', gloss='mammals having a placenta; all mammals except monotremes and marsupials'), [Synset(pos='n', offset='01378363', gloss='any warm-blooded vertebrate having the skin more or less covered with hair; young are born alive except for the small subclass of monotremes and nourished with milk'), [Synset(pos='n', offset='00995974', gloss='animals having a bony or cartilaginous skeleton with a segmented spinal column and a large brain enclosed in a skull or cranium'), [Synset(pos='n', offset='00990770', gloss='any animal of the phylum Chordata having a notochord or spinal column'), [Synset(pos='n', offset='00008019', gloss='a living organism characterized by voluntary movement'), [Synset(pos='n', offset='00002086', gloss='any living entity'), [Synset(pos='n', offset='00001740', gloss='anything having existence (living or nonliving)')]]]]]]]]]]
         """
 
         tree = [self]
@@ -1243,8 +1243,8 @@ class Synset(_WordNetObject):
             could be found. 1 is returned if a ``Synset`` is compared with
             itself.
         >>> LWN = WordNetCorpusReader(iso_code="lat")
-        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', definition='a short stabbing weapon with a pointed blade')
-        >>> s2 = Synset(LWN, None, pos='n', offset='03457380', definition='a cutting or thrusting weapon with a long blade')
+        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', gloss='a short stabbing weapon with a pointed blade')
+        >>> s2 = Synset(LWN, None, pos='n', offset='03457380', gloss='a cutting or thrusting weapon with a long blade')
         >>> s1.path_similarity(s2)
         0.25
         """
@@ -1350,7 +1350,7 @@ class Synset(_WordNetObject):
         the addition of the simulate_root flag (see below), the score for
         verbs now almost always agree but not always for nouns.
         The LCS does not necessarily feature in the shortest path connecting
-        the two senses, as it is by definition the common ancestor deepest in
+        the two senses, as it is by gloss the common ancestor deepest in
         the taxonomy, not closest to the two senses. Typically, however, it
         will so feature. Where multiple candidates for the LCS exist, that
         whose shortest path to the root node is the longest will be selected.
@@ -1368,8 +1368,8 @@ class Synset(_WordNetObject):
             objects, normally greater than zero. If no connecting path between
             the two senses can be found, None is returned.
         >>> LWN = WordNetCorpusReader(iso_code="lat")
-        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', definition='a short stabbing weapon with a pointed blade')
-        >>> s2 = Synset(LWN, None, pos='n', offset='03457380', definition='a cutting or thrusting weapon with a long blade')
+        >>> s1 = Synset(LWN, None, pos='n', offset='02542418', gloss='a short stabbing weapon with a pointed blade')
+        >>> s2 = Synset(LWN, None, pos='n', offset='03457380', gloss='a cutting or thrusting weapon with a long blade')
         >>> s1.wup_similarity(s2)
         0.8
         """
@@ -1523,8 +1523,8 @@ class Synset(_WordNetObject):
             ]
 
     def __repr__(self):
-        return "Synset(pos='{}', offset='{}', definition='{}')".format(
-            self.pos(), self.offset(), self.definition()
+        return "Synset(pos='{}', offset='{}', gloss='{}')".format(
+            self.pos(), self.offset(), self.gloss()
         )
 
     def related(self, relation_symbol=None, sort=True):
@@ -1532,7 +1532,7 @@ class Synset(_WordNetObject):
         >>> LWN = WordNetCorpusReader(iso_code="lat")
         >>> s1 = LWN.synset_from_pos_and_offset('v', '01215448')
         >>> s1.related('~')
-        [Synset(pos='v', offset='01217265', definition='feel panic')]
+        [Synset(pos='v', offset='01217265', gloss='feel panic')]
         """
         get_synset = self._wordnet_corpus_reader.synset_from_pos_and_offset
         if relation_symbol and relation_symbol in self._related:
@@ -1596,7 +1596,7 @@ class WordNetCorpusReader(CorpusReader):
     [Lemma(lemma='uirtus', pos='n', morpho='n-s---fn3-', uri='u0800')]
     >>> courage = LWN.synset('n#03805961')
     >>> print(courage)
-    Synset(pos='n', offset='03805961', definition='a quality of spirit that enables you to face danger of pain without showing fear')
+    Synset(pos='n', offset='03805961', gloss='a quality of spirit that enables you to face danger of pain without showing fear')
     >>> adverbs = LWN.synsets('r')
     >>> print(len(list(adverbs)) > 3600)
     True
@@ -1626,7 +1626,7 @@ class WordNetCorpusReader(CorpusReader):
             encoding=self._ENCODING, root="", fileids=None
         )
         self._iso_code = iso_code
-        self._host = _DEFAULT_HOSTS[self._iso_code]
+        self._host = self._DEFAULT_HOSTS[self._iso_code]
         self._ignore_errors = ignore_errors
 
         # A cache so we don't have to reconstuct synsets
@@ -1766,7 +1766,7 @@ class WordNetCorpusReader(CorpusReader):
         :return: Synset object
         >>> LWN = WordNetCorpusReader(iso_code="lat")
         >>> LWN.synset('r#L2556264')
-        Synset(pos='r', offset='L2556264', definition='in the manner of a woman')
+        Synset(pos='r', offset='L2556264', gloss='in the manner of a woman')
         """
 
         pos, offset = SENSENUM_RE.search(id).groups()
@@ -1784,7 +1784,7 @@ class WordNetCorpusReader(CorpusReader):
         """
         >>> LWN = WordNetCorpusReader(iso_code="lat")
         >>> LWN.synset_from_pos_and_offset('r', 'L2556264')
-        Synset(pos='r', offset='L2556264', definition='in the manner of a woman')
+        Synset(pos='r', offset='L2556264', gloss='in the manner of a woman')
         """
         # Check to see if the synset is in the cache
         if offset in self._synset_cache[pos]:
@@ -1868,7 +1868,7 @@ class WordNetCorpusReader(CorpusReader):
                 synset["language"],
                 synset["pos"],
                 synset["offset"],
-                synset["definition"],
+                synset["gloss"],
             )
             for synset in synsets_list
         )
@@ -2175,8 +2175,8 @@ if __name__ == "__main__":
     print("Fetched lemma by URI:", virtus)
     print("...with synsets:")
     for synset in virtus.synsets():
-        print("-", synset.definition())
-    animus = LWN.lemma("animus", return_ambiguous=True)
+        print("-", synset.gloss())
+    animus = LWN.lemma("animus", return_ambiguous=False)
     print("Fetched lemma", animus)
     print("'Virtus' and 'animus' share the following synsets:")
     for synset in set(virtus.synsets()).intersection(set(animus.synsets())):
@@ -2198,10 +2198,10 @@ if __name__ == "__main__":
     print("Translating 'courage':", courage)
 
     s1 = LWN.synset("n#02542418")
-    print("Fetched synset:", s1.id(), "=", s1.definition())
+    print("Fetched synset:", s1.id(), "=", s1.gloss())
     s2 = LWN.synset("n#03457380")
-    print("Fetched synset:", s2.id(), "=", s2.definition())
+    print("Fetched synset:", s2.id(), "=", s2.gloss())
 
     print("Common hypernyms:")
     for hypernym in sorted(s1.common_hypernyms(s2), key=lambda x: x.offset()):
-        print("-", hypernym.definition())
+        print("-", hypernym.gloss())
