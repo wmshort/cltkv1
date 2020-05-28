@@ -21,17 +21,27 @@ class WordNetProcess(Process):
 
     @cachedproperty
     def algorithm(self):
-        """The method to be executed coming out of the
-
-        TODO: @Bill we need to decide upon what the most generally useful method call to your class will be.
-
-        For example, let's say .synsets() is best. The we would loop through Doc.words. Within that list are many Word objects. You
-        would look at word.lemma (say) and then in .run() (below) you would create a new key-value pair within Word. So
-        if Word.lemma = "adversarius" you could add something like Word.synset = [inimicus, perduellis].
-        """
-
-        #
-        pass
+        """Returns a WordNetCorpusReader appropriate to the Document's language"""
+        language = None
+        if self.language == "lat":
+            language = "lat"
+        elif self.language == "grc":
+            language = "grk"
+        elif self.language == "san":
+            language = "skt"
+        if language is not None:
+            return WordNetCorpusReader(language)
 
     def run(self):
+        """
+                Then we would loop through Doc.words. Within that list are
+                many Word objects. You
+                would look at word.lemma (say) and then in .run() (below) you would create a new key-value pair
+                within Word. So
+                if Word.lemma = "adversarius" you could add something like Word.synset = [inimicus, perduellis].
+
+                after resolving the lemma, return its Synsets -- via which it is possible access synonyms, etc
+                alternatively, and perhaps more intuitive for most use-cases, immediately return the resolved Lemmas
+                via this Lemma's Synsets
+        """
         pass
