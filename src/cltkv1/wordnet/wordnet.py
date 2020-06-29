@@ -11,7 +11,7 @@ synonymy, antonymy etc. It is also possible to compute semantic similarities usi
 >>> LWN = WordNetCorpusReader(iso_code="lat")
 >>> uirtus = LWN.lemma('uirtus')
 
-# >>> list(uirtus.synsets())
+# >>> list(uirtus[0].synsets())
 # [Synset(pos='n', offset='05595229', gloss='feeling no fear'), Synset(pos='n', offset='04504076', gloss='a characteristic property that defines the apparent individual nature of something'), Synset(pos='n', offset='04349777', gloss='possession of the qualities (especially mental qualities) required to do something or get something done; "danger heightened his powers of discrimination"'), Synset(pos='n', offset='04549901', gloss='an ideal of personal excellence toward which a person strives'), Synset(pos='n', offset='03800378', gloss='moral excellence or admirableness'), Synset(pos='n', offset='03800842', gloss='morality with respect to sexual relations'), Synset(pos='n', offset='03805961', gloss='a quality of spirit that enables you to face danger of pain without showing fear'), Synset(pos='n', offset='03929156', gloss='strength of mind that enables one to endure adversity with courage'), Synset(pos='n', offset='03678310', gloss='the trait of being manly; having the characteristics of an adult male'), Synset(pos='n', offset='03806773', gloss='resolute courageousness'), Synset(pos='n', offset='04505328', gloss='something in which something or some one excels'), Synset(pos='n', offset='03806965', gloss='the trait of having a courageous spirit'), Synset(pos='n', offset='03655289', gloss='courageous high-spiritedness'), Synset(pos='n', offset='03808136', gloss='the trait of showing courage and determination in spite of possible loss or injury'), Synset(pos='n', offset='04003047', gloss='the quality that renders something desirable or valuable or useful'), Synset(pos='n', offset='03717355', gloss='a degree or grade of excellence or worth'), Synset(pos='n', offset='04003707', gloss='any admirable quality or attribute'), Synset(pos='n', offset='03798920', gloss='the quality of doing what is right and avoiding what is wrong'), Synset(pos='n', offset='03799068', gloss='a particular moral excellence')]
 
 >>> LWN.synset('n#03457380')
@@ -492,10 +492,10 @@ class Lemma(_WordNetObject):
         >>> abalienatio
         [Lemma(lemma='abalienatio', pos='n', morpho='n-s---fn3-', uri='a0014')]
 
-        # >>> list(abalienatio[0].derivationally_related_forms())[0]
-        # [Lemma(lemma='abalieno', pos='v', morpho='v1spia--1-', uri='a0015')]
+        # >>> sorted(abalienatio[0].derivationally_related_forms())[0]
+        # [Lemma(lemma='abalienatus', pos='a', morpho='aps---mn1-', uri='53399'), Lemma(lemma='abalieno', pos='v', morpho='v1spia--1-', uri='a0015')]
         """
-        return self.related("\\")
+        return self.related("/")
 
     def pertainyms(self):
         """
@@ -504,11 +504,10 @@ class Lemma(_WordNetObject):
         >>> abalienatio
         [Lemma(lemma='abalienatio', pos='n', morpho='n-s---fn3-', uri='a0014')]
 
-        # TODO update
-        # >>> list(abalienatio[0].pertainyms())
-        # [Lemma(lemma='abalienatus', pos='a', morpho='aps---mn1-', uri='53399')]
+        # >>> sorted(abalienatio[0].pertainyms())
+        # [Lemma(lemma='ab', pos='p', morpho='p---------', uri='a0001'), Lemma(lemma='abalieno', pos='v', morpho='v1spia--1-', uri='a0015')]
         """
-        return self.related("/")
+        return self.related("\\")
 
     def participle(self):
         return self.related("<")
